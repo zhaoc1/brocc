@@ -2,7 +2,7 @@ from unittest import TestCase, main
 from cStringIO import StringIO
 
 from brocclib.parse import (
-    read_blast, iter_fasta, parse_gi_number,
+    read_blast, iter_fasta, parse_gi_number, parse_accession
     )
 
 
@@ -14,6 +14,10 @@ class GiNumberTests(TestCase):
     def test_gi_empty(self):
         for s in ['', 'gi', 'ran|dom']:
             self.assertEqual(parse_gi_number(s), None)
+    
+    def test_accession(self):
+        obs = parse_accession("KP131807.1")
+        self.assertEqual(obs, "KP131807.1")
 
 
 class FastaTests(TestCase):

@@ -48,7 +48,7 @@ def iter_blast(blast_lines):
                 query_id = full_query_id
             # Need to extract the GI number from the NCBI formatted
             # reference ID.
-            gi_num = parse_gi_number(vals[1])
+            gi_num = parse_accession(vals[1]) #parse_gi_number(vals[1])
             pct_id = float(vals[2])
             length = float(vals[3])
             hit = BlastHit(gi_num, pct_id, length)
@@ -71,3 +71,10 @@ def parse_gi_number(id_string):
                 return t2
         return None
 
+def parse_accession(desc):
+    if "|" in desc:
+        # old blast format
+        return desc.split("|")[3]
+    else:
+        # new blast format
+        return desc

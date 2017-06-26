@@ -117,14 +117,14 @@ def get_lineage(taxid):
                 num_tries += 1
         except urllib2.URLError as e:
             num_tries += 1
-            print e
-            print "Database connectiom timed out for taxon", taxid, "Will retry"
+            print(e)
+            print("Database connectiom timed out for taxon", taxid, "Will retry")
         except Exception as e:
             num_tries += 1
-            print e, "Will retry"
+            print(e, "Will retry")
     if num_tries == 5:
-        print "could not connect to db for taxon" + str(taxid)
-        print str(taxid) + " will not be considered"
+        print("could not connect to db for taxon" + str(taxid))
+        print(str(taxid) + " will not be considered")
         return None
 
 
